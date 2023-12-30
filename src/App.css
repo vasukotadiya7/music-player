@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(45, 44, 44);
+}
+
+div .searchbar {
+  height: 75px;
+}
+div .middle {
+  display: flex;
+  overflow: scroll;
+}
+div .sidebar {
+  width: 300px;
+  background-color: blue;
+}
+div .body {
+  background-color: coral;
+  overflow: scroll;
+}
+div .player {
+  /* width: 300px; */
+  /* align-items: center;
+  justify-content: center; */
+  max-height: 200px;
+  min-height: auto;
+  background-color: #000;
+}
+div .footer {
+  background-color: rgb(222, 219, 62);
+}
