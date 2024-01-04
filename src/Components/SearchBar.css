@@ -1,0 +1,88 @@
+.mainSearchbar {
+  /* align-items: center; */
+}
+.searchbar {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+
+.userdetails {
+  display: flex;
+  color: rgb(102, 252, 241);
+}
+.userdetails img {
+  cursor: pointer;
+  height: 35px;
+  width: 35px;
+}
+
+select {
+  display: none;
+}
+input[type="Text"] {
+  height: 40px;
+  width: 300px;
+  border-radius: 25px;
+  border: 1px rgb(102, 252, 241) solid;
+  padding-left: 30px;
+  color: rgb(102, 252, 241);
+  background-color: rgb(11, 12, 16);
+  box-shadow: 0px 0px 10px 1px rgb(102, 252, 241);
+  /* color: white; */
+  /* border: 1px solid white; */
+}
+.resultDiv {
+  position: absolute;
+  z-index: 1;
+  left: 26%;
+  color: rgb(102, 252, 241);
+  backdrop-filter: blur(10px);
+  /* background-color: white; */
+  min-width: 280px;
+  max-height: 500px;
+  overflow-y: scroll;
+  max-width: fit-content;
+  text-align: left;
+  /* padding-left: 5px; */
+  /* overflow:scroll; */
+  /* padding-top: 10px; */
+}
+.recyclerview {
+  align-items: center;
+  padding: 10px;
+  font-size: smaller;
+}
+.recyclerview:hover {
+  /* background-color: rgb(32, 40, 51); */
+  box-shadow: inset 0px 0px 10px 1px rgb(102, 252, 241);
+  cursor: pointer;
+}
+.recyclerview img {
+  border-radius: 10px;
+}
+.recyclerview div {
+  padding-left: 10px;
+}
+li {
+  list-style-type: none;
+  /* padding-bottom: 15px; */
+}
+.resultDiv :hover {
+  /* background-color: aqua; */
+}
+
+.searchbar button {
+  width: 50px;
+  height: 40px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  /* background-color: white; */
+}
+.searchbar button:hover {
+  /* background-color: azure; */
+}
+*:focus {
+  outline: none;
+}

@@ -1,0 +1,25 @@
+.component {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.component img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+.firstdiv {
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+.playingName {
+  padding-left: 35px;
+  /* color: black; */
+}
+audio {
+  width: 50%;
+}
+audio::-webkit-media-controls-panel {
+  background-color: rgb(102, 252, 241);
+}

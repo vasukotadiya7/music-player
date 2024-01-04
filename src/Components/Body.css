@@ -1,0 +1,44 @@
+/* .h {
+  background-color: rgb(228, 19, 19);
+} */
+.card {
+  transition: transform 0.3s ease-in-out;
+  /* background-color: rgb(48, 64, 50); */
+  display: flex;
+}
+.card div {
+  padding: 10px;
+}
+/* .bodydiv .albums .card {
+  border-radius: 29px;
+  background: #e0e0e0;
+  box-shadow: 15px 15px 30px #5a5a5a, -15px -15px 30px #ffffff;
+} */
+.bodydiv {
+  font-size: smaller;
+}
+.card div:hover {
+  transform: scale(1.1);
+  border: none;
+}
+.albums,
+.artists,
+.playlists {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  font-size: smaller;
+}
+.card div {
+  margin-left: 10px;
+  border-radius: 20px;
+  border: 1px solid rgb(60, 60, 60);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.artists .card img {
+  border-radius: 50px;
+}
