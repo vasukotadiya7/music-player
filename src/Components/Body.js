@@ -1,21 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Body.css";
-export const Body = ({
-  playback,
-  setPlayback,
-  queue,
-  setQueue,
-  isPlaying,
-  setIsPlaying,
-  currTime,
-  setCurrTime,
-  seconds,
-  setSeconds,
-  Time,
-  setTime,
-  currentPlaying,
-  setCurrentplaying,
-}) => {
+export const Body = ({ setQueue, setCurrentplaying }) => {
   const [album, setAlbum] = useState([]);
   const [playlist, setPlaylist] = useState([]);
   const fetchTrending = async () => {
@@ -33,7 +18,7 @@ export const Body = ({
   const gretting = () => {
     var date = new Date();
     var hour = date.getHours();
-    console.log(hour);
+    // console.log(hour);
     if (0 <= hour && 5 > hour) {
       return "Good Night";
     } else if (5 <= hour && 12 > hour) {
@@ -72,6 +57,8 @@ export const Body = ({
                     setCurrentplaying({
                       title: i.name,
                       icon: i.image[1].link,
+                      type: "album",
+                      id: i.id,
                     });
                     var a = -1;
                     const sorted = playlistSongs.map((i) => {
@@ -123,6 +110,8 @@ export const Body = ({
                     setCurrentplaying({
                       title: i.name,
                       icon: i.image[1].link,
+                      type: "playlist",
+                      id: i.id,
                     });
                     var a = -1;
                     const sorted = playlistSongs.map((i) => {

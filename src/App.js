@@ -3,14 +3,21 @@ import { Player } from "./Components/Player";
 import { Sidebar } from "./Components/Sidebar";
 import { SearchBar } from "./Components/SearchBar";
 import { Body } from "./Components/Body";
+
 import "./App.css";
 
-export const App = ({ token, logout }) => {
-  const [audioUrl, setAudioUrl] = useState("");
+export const App = ({ user }) => {
+  // window.addEventListener("beforeunload", function (e) {
+  //   e.preventDefault();
+  //   console.log("tab colsed ");
+  //   e.returnValue = "";
+  // });
   const [queue, setQueue] = useState([]);
   const [currentPlaying, setCurrentplaying] = useState({
     title: "",
     icon: "",
+    type: "",
+    id: "",
   });
   const [searchtext, setSearchtext] = useState("");
   const [playback, setPlayback] = useState({
@@ -28,47 +35,42 @@ export const App = ({ token, logout }) => {
   });
   const [serachtype, setSearchtype] = useState("");
   const [musicChanged, setMusicchanged] = useState(false);
-  const qala =
-    "https://spotifymusic.s3.us-west-004.backblazeb2.com/Muqabla.mp3";
-  const [isPlaying, setIsPlaying] = useState(false);
 
-  const [currTime, setCurrTime] = useState({
-    min: "0",
-    sec: "0",
-  });
-  const [Time, setTime] = useState({
-    min: 0,
-    sec: 0,
-  });
-  const [seconds, setSeconds] = useState();
+  // useEffect(() => {
+  //   console.log("song Changed");
+  //   console.log(playback.current);
+  //   updateCurr();
+  // }, [playback.current]);
+  // useEffect(() => {
+  //   console.log("type changed");
+  //   console.log(currentPlaying);
+  // }, [currentPlaying]);
 
-  useEffect(() => {
-    // Replace 'YOUR_GENERATED_DOWNLOAD_URL' with the actual generated download URL from Backblaze B2
-  }, []);
-
+  // const updateCurr = async () => {};
   function searchChange(value) {
     setSearchtext(value);
   }
+  const database = async (email, name) => {
+    const res2 = await fetch("http://localhost:8080/user/register", {
+      method: "POST",
+      body: JSON.stringify({ useremail: email, username: name }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const result1 = await res2.json();
+    if (!result1.success) {
+      // logout()
+    }
+  };
+  database(user.email, user.name);
   return (
     <>
       <SearchBar
         playback={playback}
         setPlayback={setPlayback}
-        queue={queue}
-        setQueue={setQueue}
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying}
-        seconds={seconds}
-        setSeconds={setSeconds}
-        Time={Time}
-        setTime={setTime}
-        currTime={currTime}
-        setCurrTime={setCurrTime}
         searchChange={searchChange}
         musicChanged={musicChanged}
         setMusicchanged={setMusicchanged}
-        logout={logout}
-        token={token}
+        user={user}
       />
       <div className="middle">
         {queue ? (
@@ -77,16 +79,8 @@ export const App = ({ token, logout }) => {
             setPlayback={setPlayback}
             queue={queue}
             setQueue={setQueue}
-            isPlaying={isPlaying}
-            setIsPlaying={setIsPlaying}
-            seconds={seconds}
-            setSeconds={setSeconds}
-            Time={Time}
-            setTime={setTime}
-            currTime={currTime}
             musicChanged={musicChanged}
             setMusicchanged={setMusicchanged}
-            setCurrTime={setCurrTime}
             currentPlaying={currentPlaying}
             setCurrentplaying={setCurrentplaying}
           />
@@ -104,16 +98,8 @@ sdkfsfl
             setPlayback={setPlayback}
             queue={queue}
             setQueue={setQueue}
-            isPlaying={isPlaying}
-            setIsPlaying={setIsPlaying}
-            seconds={seconds}
-            setSeconds={setSeconds}
-            Time={Time}
-            setTime={setTime}
-            currTime={currTime}
             currentPlaying={currentPlaying}
             setCurrentplaying={setCurrentplaying}
-            setCurrTime={setCurrTime}
           />
         </div>
       </div>
@@ -124,14 +110,6 @@ sdkfsfl
             setPlayback={setPlayback}
             queue={queue}
             setQueue={setQueue}
-            isPlaying={isPlaying}
-            setIsPlaying={setIsPlaying}
-            seconds={seconds}
-            setSeconds={setSeconds}
-            Time={Time}
-            setTime={setTime}
-            currTime={currTime}
-            setCurrTime={setCurrTime}
             musicChanged={musicChanged}
             setMusicchanged={setMusicchanged}
           />

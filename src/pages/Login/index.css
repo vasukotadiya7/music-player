@@ -1,0 +1,14 @@
+.loginpage {
+  height: 500px;
+  display: grid;
+  place-content: center;
+  /* text-align: center; */
+  color: black;
+  font-family: "Poppins", sans-serif;
+}
+.loginpage img {
+  padding-bottom: 100px;
+}
+body {
+  background: #000;
+}

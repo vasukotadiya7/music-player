@@ -3,19 +3,8 @@ export const Sidebar = ({
   playback,
   setPlayback,
   queue,
-  setQueue,
-  isPlaying,
-  setIsPlaying,
-  currTime,
-  setCurrTime,
-  seconds,
-  setSeconds,
-  Time,
   setTime,
-  musicChanged,
-  setMusicchanged,
   currentPlaying,
-  setCurrentplaying,
 }) => {
   const playSongs = () => {
     setPlayback({
@@ -28,15 +17,8 @@ export const Sidebar = ({
         index: 0,
       },
     });
-
-    setTime({
-      min: Math.floor(queue[0].duration / 60),
-      sec: Math.floor(queue[0].duration % 60),
-    });
   };
-  console.log(queue);
-  console.log(queue.length);
-  console.log(playback.current.index);
+
   return (
     <div className="songname">
       {currentPlaying ? (
@@ -76,10 +58,7 @@ export const Sidebar = ({
                       index: i.index,
                     },
                   });
-                  setTime({
-                    min: Math.floor(i.duration / 60),
-                    sec: Math.floor(i.duration % 60),
-                  });
+
                   // setMusicchanged(!musicChanged);
                 }}
               >

@@ -8,13 +8,32 @@
 }
 
 .userdetails {
-  display: flex;
+  /* display: flex; */
   color: rgb(102, 252, 241);
+}
+
+.usermenu {
+  position: absolute;
+  z-index: 1;
+  right: 5px;
+  text-align: center;
+  background: white;
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+}
+.usermenu p {
+  padding: 5px;
+}
+.userdetails .usermenu img {
+  height: 100px;
+  width: 100px;
 }
 .userdetails img {
   cursor: pointer;
-  height: 35px;
-  width: 35px;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
 }
 
 select {

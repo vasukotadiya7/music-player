@@ -1,52 +1,65 @@
 import { useEffect, useState, React } from "react";
 
 import "./Player.css";
-import palette from "palette.js";
 export const Player = ({
   playback,
   setPlayback,
   queue,
-  setQueue,
-  // isPlaying,
-  // setIsPlaying,
-  currTime,
-  setCurrTime,
-  seconds,
   setSeconds,
-  Time,
-  setTime,
   musicChanged,
-  setMusicchanged,
 }) => {
+  const audio = document.getElementById("music");
+  // const currentTrack = {
+  //   title: "Song Title",
+  //   artist: "Artist Name",
+  //   album: "Album Name",
+  //   // other metadata fields
+  // };
+
+  navigator.mediaSession.setActionHandler("play", function () {
+    // Handle play action
+    audio.play();
+  });
+
+  navigator.mediaSession.setActionHandler("pause", function () {
+    // Handle pause action
+    audio.pause();
+  });
+  navigator.mediaSession.setActionHandler("previoustrack", function () {
+    // Handle previous track action
+    setindexpre();
+    // Update metadata and start playback of the previous track
+  });
+
+  navigator.mediaSession.setActionHandler("nexttrack", function () {
+    // Handle next track action
+    setindex();
+    // Update metadata and start playback of the next track
+  });
   const [a, setA] = useState(true);
   var src;
   useEffect(() => {
     src = playback.current.link;
-    setImageUrl(src);
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: playback.current.title,
+      artist: playback.current.artist,
+      artwork: [
+        {
+          src: playback.current.icon,
+          sizes: "96x96",
+          type: "image/png",
+        },
+      ],
+      // other metadata fields
+    });
   }, [playback.current.link]);
 
   useEffect(() => {
     setA(musicChanged);
-    setSeconds(0);
     // setIsPlaying(false);
   }, [musicChanged]);
   src = playback.current.link || "";
-  console.log(src);
 
-  const [imageUrl, setImageUrl] = useState("");
-  const [paletteColors, setPaletteColors] = useState([]);
-
-  useEffect(() => {
-    if (imageUrl) {
-      const img = new Image();
-      img.onload = () => {
-        const colors = palette(img);
-        setPaletteColors(colors);
-        console.log(colors);
-      };
-      img.src = src;
-    }
-  }, [imageUrl]);
   useEffect(() => {}, [playback.current.index]);
   var music = document.getElementById("music");
   if (music) {
@@ -54,21 +67,6 @@ export const Player = ({
       setindex();
     });
   }
-  document.addEventListener(
-    "keydown",
-    function (event) {
-      if (event.keyCode === 176) {
-        alert("next was pressed");
-      } else if (event.keyCode === 177) {
-        alert("previous was pressed");
-      } else if (event.keyCode === 178) {
-        alert("stop was pressed");
-      } else if (event.keyCode === 179) {
-        alert("play was pressed");
-      }
-    },
-    true
-  );
   const setindex = () => {
     var index = playback.current.index;
     if (queue && index < queue.length - 1) {

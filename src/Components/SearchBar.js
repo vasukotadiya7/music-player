@@ -3,79 +3,19 @@ import "./SearchBar.css";
 export const SearchBar = ({
   playback,
   setPlayback,
-  queue,
-  setQueue,
-  isPlaying,
   setIsPlaying,
-  currTime,
-  setCurrTime,
-  seconds,
-  setSeconds,
-  Time,
-  setTime,
   musicChanged,
   setMusicchanged,
-  logout,
-  token,
   searchChange,
+  user,
 }) => {
-  const [userid, setUserid] = useState("");
-  const [username, setUsername] = useState("");
-  const fetchUser = async () => {
-    const res = await fetch("https://api.spotify.com/v1/me", {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    });
-    const result = await res.json();
-    if (result.error) {
-      logout();
-    }
-    setUsername(result.display_name);
-    setUserid(result.id);
-    console.log(result);
+  const logout = () => {
+    window.open(`http://localhost:8080/auth/logout`, "_self");
   };
-  useEffect(() => {
-    fetchUser();
-  }, []);
+
   const [searchtext, setSearchtext] = useState("");
   const [searchsug, setSearchsug] = useState([]);
-  const searchResult = async (e) => {
-    console.log(searchtext);
-    const res = await fetch(
-      "https://saavn.me/search/songs?query=" + searchtext + "&page=1&limit=2",
-      // "https://saavn.me/search/songs?query=kesariya&page=1&limit=2",
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-    const result = await res.json();
-    if (result.status !== "SUCCESS") {
-      alert("No Song Found ! Please check Spelling Mistake ._. ");
-    } else {
-      alert("Successed");
-      const current = {
-        icon: result.data.results[0].image[1].link,
-        artist: result.data.results[0].primaryArtists,
-        title: result.data.results[0].name,
-        duration: result.data.results[0].duration,
-        link: result.data.results[0].downloadUrl[1].link,
-      };
-      setPlayback({
-        current: current,
-      });
-      setIsPlaying(false);
-      setMusicchanged(!musicChanged);
-      setSearchtext("");
-      setTime({
-        min: Math.floor(current.duration / 60),
-        sec: Math.floor(current.duration % 60),
-      });
-      console.log(playback);
-    }
-  };
+  const [toggle, setToggle] = useState(false);
   const handleChange = async (e) => {
     const { value } = e.target;
     var se = document.getElementById("searchtext").value;
@@ -98,7 +38,6 @@ export const SearchBar = ({
       // setSearchtext("");
     }
   };
-
   return (
     <div className="mainSearchbar">
       <div className="searchbar">
@@ -127,17 +66,24 @@ export const SearchBar = ({
             onChange={handleChange}
             placeholder="Type Something"
           />
-          {/* <button type="submit" onClick={searchResult}>
-            &#128269;
-          </button> */}
         </div>
         <div className="userdetails">
-          <h2>{username}</h2>
-          <img
-            onClick={logout}
-            src="https://i.postimg.cc/xdmhcV7b/Untitled-design-5.png"
-            alt="logout"
-          />
+          <h3
+            onClick={() => {
+              setToggle(!toggle);
+            }}
+          >
+            Profile
+          </h3>
+          {toggle === true ? (
+            <div className="usermenu">
+              <img src={user.picture} alt="profile" />
+              <p>{user.name}</p>
+              <p onClick={logout}>Log Out</p>
+            </div>
+          ) : (
+            <h6 style={{ display: "none" }}>Hi</h6>
+          )}
         </div>
       </div>
       {searchtext === "" ? (
@@ -160,10 +106,6 @@ export const SearchBar = ({
                         duration: i.duration,
                         icon: i.image[1].link,
                       },
-                    });
-                    setTime({
-                      min: Math.floor(i.duration / 60),
-                      sec: Math.floor(i.duration % 60),
                     });
                     setMusicchanged(!musicChanged);
                     setSearchtext("");
