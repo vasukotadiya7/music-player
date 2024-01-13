@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Player } from "./Components/Player";
 import { Sidebar } from "./Components/Sidebar";
 import { SearchBar } from "./Components/SearchBar";
@@ -6,7 +7,28 @@ import { Body } from "./Components/Body";
 
 import "./App.css";
 
-export const App = ({ user }) => {
+// export const App = ({ user }) => {
+export const App = () => {
+  const [user, setUser] = useState(null);
+
+  const getUser = async () => {
+    try {
+      // const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
+      const url = `http://localhost:8080/auth/login/success`;
+      // const url = `http://tuneify.cyclic.app/auth/login/success`;
+      const { data } = await axios.get(url, { withCredentials: true });
+      setUser(data.user._json);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    if (user !== null) {
+      getUser();
+    }
+  }, []);
+
   // window.addEventListener("beforeunload", function (e) {
   //   e.preventDefault();
   //   console.log("tab colsed ");
@@ -61,7 +83,9 @@ export const App = ({ user }) => {
       // logout()
     }
   };
-  database(user.email, user.name);
+  if (user !== null) {
+    database(user.email, user.name);
+  }
   return (
     <>
       <SearchBar
@@ -71,6 +95,7 @@ export const App = ({ user }) => {
         musicChanged={musicChanged}
         setMusicchanged={setMusicchanged}
         user={user}
+        setUser={setUser}
       />
       <div className="middle">
         {queue ? (

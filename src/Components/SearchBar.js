@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import "./SearchBar.css";
+import { Navigate } from "react-router-dom";
 export const SearchBar = ({
   playback,
   setPlayback,
@@ -8,11 +10,27 @@ export const SearchBar = ({
   setMusicchanged,
   searchChange,
   user,
+  setUser,
 }) => {
+  const getUser = async () => {
+    try {
+      // const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
+      const url = `http://localhost:8080/auth/login/success`;
+      // const url = `http://tuneify.cyclic.app/auth/login/success`;
+      const { data } = await axios.get(url, { withCredentials: true });
+      setUser(data.user._json);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
   const logout = () => {
     window.open(`http://localhost:8080/auth/logout`, "_self");
   };
-
+  console.log(user);
   const [searchtext, setSearchtext] = useState("");
   const [searchsug, setSearchsug] = useState([]);
   const [toggle, setToggle] = useState(false);
@@ -68,12 +86,19 @@ export const SearchBar = ({
           />
         </div>
         <div className="userdetails">
+          {/* {user === null ? <Navigate to="/login" /> : <Navigate to="/signup" />} */}
           <h3
             onClick={() => {
-              setToggle(!toggle);
+              if (user !== null) {
+                setToggle(!toggle);
+              } else {
+                // <Navigate to="/login" />
+                window.open("http://localhost:3000/login", "_blank");
+              }
             }}
           >
-            Profile
+            {user === null ? "LOGIN" : "Profile"}
+            {/* Profile */}
           </h3>
           {toggle === true ? (
             <div className="usermenu">

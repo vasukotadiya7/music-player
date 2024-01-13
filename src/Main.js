@@ -8,23 +8,23 @@ import "./Main.css";
 import { App } from "./App";
 
 function Main() {
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
 
-  const getUser = async () => {
-    try {
-      // const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
-      // const url = `http://localhost:8080/auth/login/success`;
-      const url = `http://tuneify.cyclic.app/auth/login/success`;
-      const { data } = await axios.get(url, { withCredentials: true });
-      setUser(data.user._json);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const getUser = async () => {
+  //   try {
+  //     // const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
+  //     const url = `http://localhost:8080/auth/login/success`;
+  //     // const url = `http://tuneify.cyclic.app/auth/login/success`;
+  //     const { data } = await axios.get(url, { withCredentials: true });
+  //     setUser(data.user._json);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
-  useEffect(() => {
-    getUser();
-  }, []);
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
 
   return (
     <>
@@ -33,24 +33,27 @@ function Main() {
           exact
           path="/"
           element={
-            user ? (
-              <>
-                {/* <Home user={user} /> */}
-                <App user={user} />
-              </>
-            ) : (
-              <Navigate to="/login" />
-            )
+            // user ? (
+            //   <>
+            //     {/* <Home user={user} /> */}
+            //     <App user={user} />
+            //   </>
+            // ) : (
+            //   <Navigate to="/login" />
+            // )
+            <App />
           }
         />
         <Route
           exact
           path="/login"
-          element={user ? <Navigate to="/" /> : <Login />}
+          // element={user ? <Navigate to="/" /> : <Login />}
+          element={<Login />}
         />
         <Route
           path="/signup"
-          element={user ? <Navigate to="/" /> : <Signup />}
+          // element={user ? <Navigate to="/" /> : <Signup />}
+          element={<Signup />}
         />
       </Routes>
     </>
