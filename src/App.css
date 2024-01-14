@@ -54,12 +54,15 @@ div .player {
     font-size: smaller;
   }
 }
-.component {
-  display: block;
-}
+
 .firstdivsecondchild audio {
   width: 400px;
 }
 div .player {
   height: auto;
+}
+@media only screen and (max-device-width: 400px) {
+  .component {
+    display: block;
+  }
 }
