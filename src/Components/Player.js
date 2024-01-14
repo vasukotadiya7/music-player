@@ -157,22 +157,23 @@ export const Player = ({
             )}
           </div>
         </div>
-
-        <div style={{ display: "flex" }}>
-          <img
-            src="https://i.postimg.cc/QC75Ys0K/multimedia-previous-song-button-icon-149086.png"
-            style={{ height: "30px", width: "30px" }}
-            alt="previous"
-            onClick={setindexpre}
-          />
-          <img
-            src="https://i.postimg.cc/MTD4Nb4S/multimedia-next-song-button-icon-149087.png"
-            alt="next"
-            onClick={setindex}
-            style={{ height: "30px", width: "30px" }}
-          />
+        <div className="firstdivsecondchild">
+          <div>
+            <img
+              src="https://i.postimg.cc/QC75Ys0K/multimedia-previous-song-button-icon-149086.png"
+              style={{ height: "30px", width: "30px" }}
+              alt="previous"
+              onClick={setindexpre}
+            />
+            <img
+              src="https://i.postimg.cc/MTD4Nb4S/multimedia-next-song-button-icon-149087.png"
+              alt="next"
+              onClick={setindex}
+              style={{ height: "30px", width: "30px" }}
+            />
+          </div>
+          <audio controls src={src} autoPlay id="music" />
         </div>
-        <audio controls src={src} autoPlay id="music" />
       </div>
     </>
   );

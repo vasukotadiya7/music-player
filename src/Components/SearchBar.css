@@ -29,11 +29,18 @@
   height: 100px;
   width: 100px;
 }
+.userdetails button {
+  cursor: pointer;
+  background-color: #4caf50;
+}
 .userdetails img {
   cursor: pointer;
   height: 60px;
   width: 60px;
   border-radius: 50%;
+}
+.logout {
+  cursor: pointer;
 }
 
 select {
@@ -54,7 +61,7 @@ input[type="Text"] {
 .resultDiv {
   position: absolute;
   z-index: 1;
-  left: 26%;
+  left: 34%;
   color: rgb(102, 252, 241);
   backdrop-filter: blur(10px);
   /* background-color: white; */

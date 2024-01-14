@@ -34,12 +34,15 @@ div .player {
 @media only screen and (max-device-width: 400px) {
   div .middle {
     display: block;
+
     width: auto;
-    overflow-x: scroll;
+    overflow-x: hidden;
   }
-  div .searchbar {
-    width: auto;
-    overflow-x: scroll;
+  div .searchbar .userdetails {
+    display: none;
+  }
+  .resultDiv {
+    left: 0%;
   }
 
   .albums,
@@ -50,4 +53,13 @@ div .player {
     overflow-y: hidden;
     font-size: smaller;
   }
+}
+.component {
+  display: block;
+}
+.firstdivsecondchild audio {
+  width: 400px;
+}
+div .player {
+  height: auto;
 }

@@ -118,7 +118,7 @@ export const Body = ({ setQueue, setCurrentplaying }) => {
                       a++;
                       return {
                         id: i.id,
-                        title: i.name,
+                        title: i.name || i.title || "Playlist",
                         iconPreview: i.image[0].link,
                         icon: i.image[1].link,
                         duration: i.duration,

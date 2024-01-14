@@ -56,6 +56,7 @@ export const SearchBar = ({
       // setSearchtext("");
     }
   };
+
   return (
     <div className="mainSearchbar">
       <div className="searchbar">
@@ -87,24 +88,26 @@ export const SearchBar = ({
         </div>
         <div className="userdetails">
           {/* {user === null ? <Navigate to="/login" /> : <Navigate to="/signup" />} */}
-          <h3
+          <button
             onClick={() => {
               if (user !== null) {
                 setToggle(!toggle);
               } else {
                 // <Navigate to="/login" />
-                window.open("http://localhost:3000/login", "_blank");
+                window.open("http://localhost:3000/login", "_self");
               }
             }}
           >
             {user === null ? "LOGIN" : "Profile"}
             {/* Profile */}
-          </h3>
+          </button>
           {toggle === true ? (
             <div className="usermenu">
               <img src={user.picture} alt="profile" />
               <p>{user.name}</p>
-              <p onClick={logout}>Log Out</p>
+              <p onClick={logout} className="logout">
+                Log Out
+              </p>
             </div>
           ) : (
             <h6 style={{ display: "none" }}>Hi</h6>
