@@ -95,7 +95,8 @@ export const SearchBar = ({
                 setToggle(!toggle);
               } else {
                 // <Navigate to="/login" />
-                window.open("http://localhost:3000/login", "_self");
+                // window.open("http://localhost:3000/login", "_self");
+                window.open("https://tuneify.vercel.app/login", "_self");
               }
             }}
           >
