@@ -16,7 +16,8 @@ export const App = () => {
       // const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
       // const url = `http://localhost:8080/auth/login/success`;
       const url = `https://tuneify.cyclic.app/auth/login/success`;
-      const { data } = await axios.get(url, { withCredentials: true });
+      // const { data } = await axios.get(url, { withCredentials: true });
+      const { data } = await axios.get(url);
       setUser(data.user._json);
     } catch (err) {
       console.log(err);
