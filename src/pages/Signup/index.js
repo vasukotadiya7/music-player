@@ -5,8 +5,8 @@ function Signup() {
   const googleAuth = () => {
     window.open(
       // `${process.env.REACT_APP_API_URL}/auth/google/callback`,
-      `http://localhost:8080/auth/google/callback`,
-      // `http://tuneify.cyclic.app/auth/google/callback`,
+      // `http://localhost:8080/auth/google/callback`,
+      `http://tuneify.cyclic.app/auth/google/callback`,
       "_self"
     );
   };
