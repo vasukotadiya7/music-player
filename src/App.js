@@ -14,8 +14,8 @@ export const App = () => {
   const getUser = async () => {
     try {
       // const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
-      const url = `http://localhost:8080/auth/login/success`;
-      // const url = `http://tuneify.cyclic.app/auth/login/success`;
+      // const url = `http://localhost:8080/auth/login/success`;
+      const url = `http://tuneify.cyclic.app/auth/login/success`;
       const { data } = await axios.get(url, { withCredentials: true });
       setUser(data.user._json);
     } catch (err) {
@@ -73,7 +73,8 @@ export const App = () => {
     setSearchtext(value);
   }
   const database = async (email, name) => {
-    const res2 = await fetch("http://localhost:8080/user/register", {
+    // const res2 = await fetch("http://localhost:8080/user/register", {
+    const res2 = await fetch("http://tuneify.cyclic.app/user/register", {
       method: "POST",
       body: JSON.stringify({ useremail: email, username: name }),
       headers: { "Content-Type": "application/json" },
