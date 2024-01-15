@@ -15,8 +15,8 @@ export const SearchBar = ({
   const getUser = async () => {
     try {
       // const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
-      const url = `http://localhost:8080/auth/login/success`;
-      // const url = `http://tuneify.cyclic.app/auth/login/success`;
+      // const url = `http://localhost:8080/auth/login/success`;
+      const url = `http://tuneify.cyclic.app/auth/login/success`;
       const { data } = await axios.get(url, { withCredentials: true });
       setUser(data.user._json);
     } catch (err) {
@@ -28,7 +28,8 @@ export const SearchBar = ({
     getUser();
   }, []);
   const logout = () => {
-    window.open(`http://localhost:8080/auth/logout`, "_self");
+    // window.open(`http://localhost:8080/auth/logout`, "_self");
+    window.open(`http://tuneify.cyclic.app/auth/logout`, "_self");
   };
   console.log(user);
   const [searchtext, setSearchtext] = useState("");
