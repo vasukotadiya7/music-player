@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-[spotify-player-g24.vercel.app](https://spotify-player-g24.vercel.app/)
+[tuneify-g24.vercel.app](https://tuneify-g24.vercel.app/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
